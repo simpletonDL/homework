@@ -1,0 +1,4 @@
+README.txt
+LIFO/out/
+LIFO/.idea/
+!LIFO/.idea/modules.xml
