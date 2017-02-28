@@ -2,3 +2,11 @@ README.txt
 LIFO/out/
 LIFO/.idea/
 !LIFO/.idea/modules.xml
+List/README.txt
+List/out/
+List/.idea/description.html
+List/.idea/misc.xml
+List/.idea/project-template.xml
+List/.idea/vcs.xml
+List/.idea/workspace.xml
+.gitignore
