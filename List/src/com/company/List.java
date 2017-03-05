@@ -2,23 +2,24 @@ package com.company;
 
 public class List {
 
+    private class Item {
+        int value;
+        Item next;
+    }
+
     private Item head;
-    private Item tail;
-    private Item ptr1;
-    private Item ptr2;
     private int size;
 
     public List() {
         head = new Item();
-        tail = new Item();
-        head.next = tail;
         size = 0;
     }
 
     public void insert(int index, int value) {
         if (index <= size) {
-            ptr1 = head;
-            ptr2 = head.next;
+            Item ptr1 = head;
+            Item ptr2 = head.next;
+
             for (int i = 0; i < index; i++) {
                 ptr1 = ptr1.next;
                 ptr2 = ptr2.next;
@@ -36,7 +37,9 @@ public class List {
 
     public void delete(int index) {
         if (index < size) {
+            Item ptr1;
             ptr1 = head;
+
             for (int i = 0; i < index; i++) {
                 ptr1 = ptr1.next;
             }
@@ -49,7 +52,7 @@ public class List {
     }
 
     public void show() {
-        for (ptr1 = head.next; ptr1 != tail; ptr1 = ptr1.next) {
+        for (Item ptr1 = head.next; ptr1 != null; ptr1 = ptr1.next) {
             System.out.print(ptr1.value + " ");
         }
         System.out.println();
@@ -57,7 +60,7 @@ public class List {
 
     public int locale(int value) {
         int i = 0;
-        for (ptr1 = head.next; ptr1 != tail; ptr1 = ptr1.next) {
+        for (Item ptr1 = head.next; ptr1 != null; ptr1 = ptr1.next) {
             if (ptr1.value == value) {
                 return i;
             }
@@ -68,7 +71,7 @@ public class List {
 
     public int retrieve(int index) {
         if (index < size) {
-            ptr1 = head.next;
+            Item ptr1 = head.next;
             for (int i = 0; i < index; i++) {
                 ptr1 = ptr1.next;
             }
@@ -81,9 +84,4 @@ public class List {
     public int getSize() {
         return size;
     }
-}
-
-class Item {
-    int value;
-    Item next;
 }
