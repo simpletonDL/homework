@@ -9,11 +9,13 @@ public class Main {
 		stack = new StackByPointers();
 		testStack(stack);
 
-		int result = MathCalculations.calculuteExpression("( ( 1 + 5 ) * 3 - 8 ) / 2");
+		MathCalculations mathCalculations = new MathCalculations();
+
+		int result = mathCalculations.calculuteExpression("( ( 1 + 5 ) * 3 - 8 ) / 2");
 		System.out.println(result); // 5
-		result = MathCalculations.calculuteExpression("( 1 + 2 ) * ( 3 - 1 )");
+		result = mathCalculations.calculuteExpression("( 1 + 2 ) * ( 3 - 1 )");
 		System.out.println(result); // 6
-		result = MathCalculations.calculuteExpression("5 + 3 * 2 + 1");
+		result = mathCalculations.calculuteExpression("5 + 3 * 2 + 1");
 		System.out.println(result); // 12
     }
 
@@ -23,21 +25,21 @@ public class Main {
     public static void testStack(Stack s)
 	{
 		s.push("1");
-		s.show(); // 1
+		s.showInConsole(); // 1
 		s.push("2");
-		s.show(); // 1 2
+		s.showInConsole(); // 1 2
 		s.push("3");
-		s.show();// 1 2 3
+		s.showInConsole();// 1 2 3
 		s.pop();
-		s.show(); // 1 2
+		s.showInConsole(); // 1 2
 		s.push("5");
-		s.show(); // 1 2 5
+		s.showInConsole(); // 1 2 5
 		s.pop();
-		s.show(); // 1 2
+		s.showInConsole(); // 1 2
 		s.pop();
-		s.show(); // 1
+		s.showInConsole(); // 1
 		s.pop();
-		s.show(); //
+		s.showInConsole(); //
 		s.pop(); // Stack is empty
 		System.out.println("*************");
 	}

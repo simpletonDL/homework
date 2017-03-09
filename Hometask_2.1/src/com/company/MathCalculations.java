@@ -2,14 +2,12 @@ package com.company;
 
 public class MathCalculations {
 
-    private static String[] orderOperator = {"+", "-", "*", "/"};
+    private String[] orderOperator = {"+", "-", "*", "/"};
 
-    public static int calculuteExpression(String expression) {
-
+    public int calculuteExpression(String expression) {
         String[] parsingArray = expression.split(" "); // Если нужно, могу сделать более нормальный парсинг
-
         Stack stack = new StackByPointers();
-        List postfix = new ListOneSide();
+        List postfix = new SingleLinkedList();
         for (int i = 0; i < parsingArray.length; i++) {
             String token = parsingArray[i];
 
@@ -35,9 +33,6 @@ public class MathCalculations {
             postfix.pushBack(stack.top());
             stack.pop();
         }
-
-        //postfix.show();
-
         StackCalculator stackCalculator = new StackCalculator();
         for (int i = 0; i < postfix.getSize(); i++) {
             String token = postfix.retrieve(i);
@@ -58,15 +53,14 @@ public class MathCalculations {
                 }
             }
         }
-
-        return Integer.parseInt(stackCalculator.pop());
+        return Integer.parseInt(stackCalculator.top());
     }
 
-    private static boolean compareOperator(String operator1, String operator2) {
+    private boolean compareOperator(String operator1, String operator2) {
         return (indexInArray(orderOperator, operator1) <= indexInArray(orderOperator, operator2));
     }
 
-    private static int indexInArray(String[] array, String toFind) {
+    private int indexInArray(String[] array, String toFind) {
         for (int i = 0; i < array.length; i++) {
             if (array[i].equals(toFind)) {
                 return i;

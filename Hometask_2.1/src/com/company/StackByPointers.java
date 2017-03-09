@@ -3,24 +3,22 @@ package com.company;
 public class StackByPointers implements Stack {
 
     private class Item {
-        String value;
-        Item previous;
+        public String value;
+        public Item previous;
+
+        public Item(String value, Item previous) {
+            this.value = value;
+            this.previous = previous;
+        }
     }
 
-    private Item bottom;
-    private Item top;
-    private int size;
-
-    public StackByPointers() {
-        bottom = new Item();
-        top = bottom;
-    }
+    private Item bottom = new Item("", null);
+    private Item top = bottom;
+    private int size = 0;
 
     @Override
     public void push(String value) {
-        Item newItem = new Item();
-        newItem.value = value;
-        newItem.previous = top;
+        Item newItem = new Item(value, top);
         top = newItem;
         size++;
     }
@@ -30,15 +28,14 @@ public class StackByPointers implements Stack {
         if (isEmpty()) {
             System.out.println("Stack is empty");
             return "";
-        } else {
-            String s = top.value;
-            top = top.previous;
-            return s;
         }
+        String s = top.value;
+        top = top.previous;
+        return s;
     }
 
     @Override
-    public void show() {
+    public void showInConsole() {
         Item ptr = top;
         recursionShow(ptr);
         System.out.println();

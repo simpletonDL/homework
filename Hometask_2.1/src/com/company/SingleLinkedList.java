@@ -1,19 +1,19 @@
 package com.company;
 
-public class ListOneSide implements List {
+public class SingleLinkedList implements List {
 
     private class Item {
-        String value;
-        Item next;
+        public String value;
+        public Item next;
+
+        public Item(String value, Item next) {
+            this.value = value;
+            this.next = next;
+        }
     }
 
-    private Item head;
-    private int size;
-
-    public ListOneSide() {
-        head = new Item();
-        size = 0;
-    }
+    private Item head = new Item("", null);
+    private int size = 0;
 
     @Override
     public void insert(int index, String value) {
@@ -26,10 +26,8 @@ public class ListOneSide implements List {
                 ptr2 = ptr2.next;
             }
 
-            Item newItem = new Item();
-            newItem.value = value;
+            Item newItem = new Item(value, ptr2);
             ptr1.next = newItem;
-            newItem.next = ptr2;
             size++;
         } else {
             System.out.println("Out of the range");
@@ -75,7 +73,7 @@ public class ListOneSide implements List {
     public int locale(String value) {
         int i = 0;
         for (Item ptr1 = head.next; ptr1 != null; ptr1 = ptr1.next) {
-            if (ptr1.value == value) {
+            if (ptr1.value.equals(value)) {
                 return i;
             }
             i++;

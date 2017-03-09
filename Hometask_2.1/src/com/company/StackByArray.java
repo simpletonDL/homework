@@ -2,16 +2,14 @@ package com.company;
 
 public class StackByArray implements Stack {
 
-    private int top;
+    private int top = -1;
     private int size;
     private String array[];
-
 
     public StackByArray(int size)
     {
         this.size = size;
         array = new String[size];
-        top = -1;
     }
 
     @Override
@@ -37,7 +35,7 @@ public class StackByArray implements Stack {
     }
 
     @Override
-    public void show() {
+    public void showInConsole() {
         for (int i = 0; i <= top; i++) {
             System.out.print(array[i] + " ");
         }
@@ -48,10 +46,9 @@ public class StackByArray implements Stack {
     public String top() {
         if (top != -1) {
             return array[top];
-        } else {
-            System.out.println("Stack is empty");
-            return "";
         }
+        System.out.println("Stack is empty");
+        return "";
     }
 
     @Override

@@ -1,13 +1,11 @@
 package com.company;
 
 public interface Stack {
-
     void push(String value);
     String pop();
-    void show();
+    void showInConsole();
     String top();
     int getSize();
     boolean isEmpty();
     boolean isFull();
-
 }

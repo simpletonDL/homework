@@ -1,38 +1,41 @@
 package com.company;
 
-import com.sun.deploy.panel.ITreeNode;
-import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
+public class StackCalculator {
 
-/**
- * Created by Арсений Терехов on 09.03.2017.
- */
-public class StackCalculator extends StackByPointers {
-
+    private Stack stack = new StackByPointers();
     private int first;
     private int second;
 
+    public void push(String value) {
+        stack.push(value);
+    }
+
+    public String top() {
+        return stack.top();
+    }
+
     public void add() {
         popTwoItem();
-        this.push( Integer.toString(first + second) );
+        stack.push( Integer.toString(first + second) );
     }
 
     public void sub() {
         popTwoItem();
-        this.push( Integer.toString(first - second) );
+        stack.push( Integer.toString(first - second) );
     }
 
     public void mul() {
         popTwoItem();
-        this.push( Integer.toString(first * second) );
+        stack.push( Integer.toString(first * second) );
     }
 
     public void div() {
         popTwoItem();
-        this.push( Integer.toString(first / second) );
+        stack.push( Integer.toString(first / second) );
     }
 
     private void popTwoItem() {
-        second = Integer.parseInt(this.pop());
-        first = Integer.parseInt(this.pop());
+        second = Integer.parseInt(stack.pop());
+        first = Integer.parseInt(stack.pop());
     }
 }
