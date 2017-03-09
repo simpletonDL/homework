@@ -11,11 +11,11 @@ public class Main {
 
 		MathCalculations mathCalculations = new MathCalculations();
 
-		int result = mathCalculations.calculuteExpression("( ( 1 + 5 ) * 3 - 8 ) / 2");
+		int result = mathCalculations.calculute("( ( 1 + 5 ) * 3 - 8 ) / 2");
 		System.out.println(result); // 5
-		result = mathCalculations.calculuteExpression("( 1 + 2 ) * ( 3 - 1 )");
+		result = mathCalculations.calculute("( 1 + 2 ) * ( 3 - 1 )");
 		System.out.println(result); // 6
-		result = mathCalculations.calculuteExpression("5 + 3 * 2 + 1");
+		result = mathCalculations.calculute("5 + 3 * 2 + 1");
 		System.out.println(result); // 12
     }
 

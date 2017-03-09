@@ -4,7 +4,7 @@ public class MathCalculations {
 
     private String[] orderOperator = {"+", "-", "*", "/"};
 
-    public int calculuteExpression(String expression) {
+    public int calculute(String expression) {
         String[] parsingArray = expression.split(" "); // Если нужно, могу сделать более нормальный парсинг
         Stack stack = new StackByPointers();
         List postfix = new SingleLinkedList();
