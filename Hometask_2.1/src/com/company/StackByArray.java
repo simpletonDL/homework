@@ -1,7 +1,6 @@
 package com.company;
 
 public class StackByArray implements Stack {
-
     private int top = -1;
     private int size;
     private String array[];

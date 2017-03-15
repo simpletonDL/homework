@@ -1,7 +1,6 @@
 package com.company;
 
 public class StackByPointers implements Stack {
-
     private class Item {
         public String value;
         public Item previous;

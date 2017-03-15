@@ -1,7 +1,6 @@
 package com.company;
 
 public class SingleLinkedList implements List {
-
     private class Item {
         public String value;
         public Item next;
@@ -19,12 +18,11 @@ public class SingleLinkedList implements List {
     public void insert(int index, String value) {
         if (index <= size) {
             Item ptr1 = head;
-            Item ptr2 = head.next;
 
             for (int i = 0; i < index; i++) {
                 ptr1 = ptr1.next;
-                ptr2 = ptr2.next;
             }
+            Item ptr2 = ptr1.next;
 
             Item newItem = new Item(value, ptr2);
             ptr1.next = newItem;
@@ -47,8 +45,7 @@ public class SingleLinkedList implements List {
     @Override
     public void delete(int index) {
         if (index < size) {
-            Item ptr1;
-            ptr1 = head;
+            Item ptr1 = head;
 
             for (int i = 0; i < index; i++) {
                 ptr1 = ptr1.next;
@@ -62,15 +59,15 @@ public class SingleLinkedList implements List {
     }
 
     @Override
-    public void show() {
-        for (Item ptr1 = head.next; ptr1 != null; ptr1 = ptr1.next) {
-            System.out.print(ptr1.value + " ");
+    public void showInConsole() {
+        for (Item current = head.next; current != null; current = current.next) {
+            System.out.print(current.value + " ");
         }
         System.out.println();
     }
 
     @Override
-    public int locale(String value) {
+    public int getIndexOfElement(String value) {
         int i = 0;
         for (Item ptr1 = head.next; ptr1 != null; ptr1 = ptr1.next) {
             if (ptr1.value.equals(value)) {
