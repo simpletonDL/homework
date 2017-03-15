@@ -45,13 +45,13 @@ public class SingleLinkedList implements List {
     @Override
     public void delete(int index) {
         if (index < size) {
-            Item ptr1 = head;
+            Item current = head;
 
             for (int i = 0; i < index; i++) {
-                ptr1 = ptr1.next;
+                current = current.next;
             }
 
-            ptr1.next = ptr1.next.next;
+            current.next = current.next.next;
             size--;
         } else {
             System.out.println("List is empty");
