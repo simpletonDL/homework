@@ -1,6 +1,5 @@
 package com.company;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Calculator {
@@ -13,7 +12,7 @@ public class Calculator {
         for (int i = 0; i < postfix.getSize(); i++) {
             String token = postfix.retrieve(i);
 
-            if ( indexInArray(orderOperator, token) == -1 ) {
+            if (indexInArray(orderOperator, token) == -1) {
                 stackCalculator.push(token);
             } else {
                 switch (token) {
@@ -40,7 +39,7 @@ public class Calculator {
         for (int i = 0; i < parsingArray.length; i++) {
             String token = parsingArray[i];
 
-            if ( token.equals("(") ) {
+            if (token.equals("(")) {
                 stack.push("(");
             } else if (isOperator(token)) {
                 while (!stack.isEmpty() && !stack.top().equals("(") && isLessOperator(token, stack.top())) {
@@ -74,7 +73,6 @@ public class Calculator {
     }
 
     private static boolean isOperator(String token) {
-        if (token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/")) return true;
-        return false;
+        return token.matches("(-|\\+|\\*|\\/)");
     }
 }

@@ -11,6 +11,7 @@ public class Main {
 		System.out.println(Calculator.calculute("( ( 1 + 5 ) * 3 - 8 ) / 2")); // 5
 		System.out.println(Calculator.calculute("( 1 + 2 ) * ( 3 - 1 )")); // 6
 		System.out.println(Calculator.calculute("5 + 3 * 2 + 1")); // 12
+		System.out.println(Calculator.calculute("( 5 + 3 ) / 2")); // 4
     }
 
     /*
