@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class ArrayToHelix {
-    public static ArrayList<Integer> convert(int array[][]) {
+    protected ArrayList<Integer> convert(int array[][]) {
         int n = array.length;
         int targetI = n / 2;
         int targetJ = n / 2;
