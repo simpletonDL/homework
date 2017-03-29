@@ -2,10 +2,8 @@ package com.test;
 
 import static org.junit.Assert.*;
 
-import com.company.ArrayToHelix;
 import com.company.OutInConsole;
 import com.company.OutInFile;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
