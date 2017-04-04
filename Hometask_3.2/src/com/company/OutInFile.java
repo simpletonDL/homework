@@ -24,7 +24,7 @@ public class OutInFile extends ArrayToHelix implements Out {
             writer.flush();
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cant`t create file " + path);
         }
     }
 }
