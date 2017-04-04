@@ -12,7 +12,22 @@ public class UniqueListTest {
     private List<Integer> list;
 
     @Test
-    public void countOfException() {
+    public void testListEquals() throws ListException {
+        List<Integer> list1 = new UniqueList<>();
+        List<Integer> list2 = new UniqueList<>();
+        list1.pushBack(1);
+        list1.pushBack(2);
+        list1.pushBack(3);
+
+        list2.pushFront(3);
+        list2.pushFront(2);
+        list2.pushFront(1);
+
+        assertEquals(list1, list2);
+    }
+
+    @Test
+    public void countOfException() throws ListException {
         list = new UniqueList<>();
         int exceptionCount = 0;
 
@@ -22,8 +37,6 @@ public class UniqueListTest {
                     list.pushBack(j);
                 } catch (UnnecessaryAction e) {
                     exceptionCount++;
-                } catch (ListException e) {
-                    fail();
                 }
             }
         }
@@ -31,43 +44,19 @@ public class UniqueListTest {
     }
 
     @Test
-    public void pushBack() {
+    public void pushBack() throws ListException {
         list = new UniqueList<>();
         for (int i = 0; i < 1000; i++) {
             try {
                 list.pushBack(i % 15);
             } catch (UnnecessaryAction e) {
 
-            } catch (ListException e) {
-                fail();
             }
         }
-
         List<Integer> expectedList = new UniqueList<>();
         for (int i = 0; i < 15; i++) {
-            try {
-                expectedList.pushBack(i);
-            } catch (ListException e) {
-                fail();
-            }
+            expectedList.pushBack(i);
         }
-
-        assertTrue(isListsEquals(list, expectedList));
-    }
-
-    private <T> boolean isListsEquals(List<T> A, List<T> B) {
-        if (A.getSize() != B.getSize()) {
-            return false;
-        }
-        for (int i = 0; i < A.getSize(); i++) {
-            try {
-                if (A.getElementFromIndex(i) != B.getElementFromIndex(i)) {
-                    return false;
-                }
-            } catch (ListException e) {
-                e.printStackTrace();
-            }
-        }
-        return true;
+        assertEquals(expectedList, list);
     }
 }

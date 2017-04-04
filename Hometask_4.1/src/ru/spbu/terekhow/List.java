@@ -14,7 +14,8 @@ public interface List<T> {
      * Insert <b>value</b> before item located in the position of <b>index</b>.
      * @throws ListException
      * It have to be thrown in the case when user try to insert item in the position out of the list.
-     * For instance, if user insert item in the position with index strictly more than size of list.
+     * For instance, if user insert item in the position with index strictly more than size of list or
+     * strictly less than zero.
      */
     void insert(int index, T value) throws ListException;
 
@@ -22,7 +23,7 @@ public interface List<T> {
      * Insert <b>value</b> in the end of the list. It can be implemented like <b>insert(size, value)</b>
      */
     void pushBack(T value) throws ListException;
-    
+
     /**
      * Insert <b>value</b> in the beginning of the list. It can be implemented like <b>insert(0, value)</b>
      */
