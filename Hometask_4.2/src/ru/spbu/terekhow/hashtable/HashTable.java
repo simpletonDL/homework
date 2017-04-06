@@ -5,11 +5,10 @@ import ru.spbu.terekhow.exceptions.OutOfTheRange;
 import ru.spbu.terekhow.exceptions.UnnecessaryAction;
 import ru.spbu.terekhow.list.UniqueList;
 
-import javax.swing.*;
-import java.security.Key;
+import java.util.ArrayList;
 
 public class HashTable<KeyType, ValueType> {
-    public class Pair {
+    private class Pair {
         KeyType key;
         ValueType value;
 
@@ -26,7 +25,8 @@ public class HashTable<KeyType, ValueType> {
         @Override
         public boolean equals(Object obj) {
             Pair pairToCompare = (Pair) obj;
-            if (key == pairToCompare.key) {
+            //System.out.print(toString() + " == " + pairToCompare + " " + (key.equals(pairToCompare.key)) + "\n");
+            if (key.equals(pairToCompare.key)) {
                 return true;
             }
             else
@@ -34,8 +34,9 @@ public class HashTable<KeyType, ValueType> {
         }
     }
 
-    public UniqueList<Pair> table[];
+    private UniqueList<Pair> table[];
     private int size;
+    public Hash<KeyType> hash = new DefaultHash<KeyType>();
 
     public HashTable(int size) {
         this.size = size;
@@ -45,42 +46,81 @@ public class HashTable<KeyType, ValueType> {
         }
     }
 
-    private int hashFunction(KeyType key) {
-        return (key.hashCode()) % size;
+    public void setHash(Hash<KeyType> newHash) {
+        ArrayList<Pair> backItems = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < table[i].getSize(); j++) {
+                try {
+                    Pair target = table[i].getElementFromIndex(j);
+                    backItems.add(target);
+                } catch (OutOfTheRange e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+
+        hash = newHash;
+        for (int i = 0; i < size; i++) {
+            table[i] = new UniqueList<Pair>();
+        }
+        for (int i = 0; i < backItems.size(); i++) {
+            Pair target = backItems.get(i);
+            insert(target.key, target.value);
+        }//*/
     }
 
-    public void insert(KeyType key, ValueType value) throws ListException {
+    private int hashFunction(KeyType key) {
+        return (hash.getHash(key)) % size;
+    }
+
+    public void insert(KeyType key, ValueType value) {
         int hash = hashFunction(key);
         Pair newPair = new Pair(key, value);
+
         try {
             table[hash].pushBack(newPair);
-        } catch (UnnecessaryAction e) {
+        } catch (UnnecessaryAction unnecessaryAction) {
             int index = table[hash].getIndexOfElement(newPair);
-            table[hash].delete(index);
-            table[hash].pushBack(newPair);
-        } catch (ListException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void showInConsole() {
-        for (int i = 0; i < size; i++) {
-            System.out.print(i + ": ");
-            table[i].showInConsole();
+            try {
+                table[hash].delete(index);
+                table[hash].pushBack(newPair);
+            } catch (ListException listException) {
+                System.out.println("Can`t insert " + newPair + ", troubles in HashTable.");
+            }
         }
     }
 
     public ValueType getValue(KeyType key) {
         int hash = hashFunction(key);
         int index = table[hash].getIndexOfElement(new Pair(key, null));
+
         if (index == -1) {
             return null;
         }
         try {
             return table[hash].getElementFromIndex(index).value;
-        } catch (OutOfTheRange outOfTheRange) {
-            outOfTheRange.printStackTrace();
+        } catch (OutOfTheRange e) {
+            System.out.println("Can`t get " + key + ", troubles in HashTable.");
+            return null;
         }
-        return null;
+    }
+
+    public void delete(KeyType key) {
+        int hash = hashFunction(key);
+        int index = table[hash].getIndexOfElement(new Pair(key, null));
+        try {
+            table[hash].delete(index);
+        } catch (OutOfTheRange outOfTheRange) {
+
+        }
+    }
+
+    //В пизду такой код
+    public void showInConsole() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(i + ": ");
+            table[i].showInConsole();
+        }
+        System.out.println();
     }
 }
