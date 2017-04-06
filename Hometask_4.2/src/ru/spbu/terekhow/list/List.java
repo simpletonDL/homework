@@ -53,12 +53,6 @@ public interface List<T> {
     T getElementFromIndex(int index) throws ListException;
 
     /**
-     * Auxiliary method that show in console list from beginning to end.
-     * It can be useful to debug.
-     */
-    void showInConsole();
-
-    /**
      * I think, it is clear :D
      */
     int getSize();

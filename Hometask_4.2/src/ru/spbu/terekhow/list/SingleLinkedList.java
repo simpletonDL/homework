@@ -37,12 +37,8 @@ public class SingleLinkedList<T> implements List<T> {
      * but the exception {@link ru.spbu.terekhow.exceptions.OutOfTheRange} haven`t to happen.
      */
     @Override
-    public void pushBack(T value) throws UnnecessaryAction {
-        try {
-            insert(size, value);
-        } catch (ListException e) {
-            System.out.println("If it has been happened, there is a error in the SingleLinkedList");
-        }
+    public void pushBack(T value) throws ListException {
+        insert(size, value);
     }
 
     /**
@@ -106,14 +102,6 @@ public class SingleLinkedList<T> implements List<T> {
     }
 
     @Override
-    public void showInConsole() {
-        for (Item current = head.next; current != null; current = current.next) {
-            System.out.print(current.value + " ");
-        }
-        System.out.println();
-    }
-
-    @Override
     public int getSize() {
         return size;
     }
@@ -142,5 +130,17 @@ public class SingleLinkedList<T> implements List<T> {
             }
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        for (Item current = head.next; current != null; current = current.next) {
+            s += current.value;
+            if (current.next != null) {
+                s += ", ";
+            }
+        }
+        return s;
     }
 }

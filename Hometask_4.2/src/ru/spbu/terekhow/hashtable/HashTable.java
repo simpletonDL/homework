@@ -3,6 +3,7 @@ package ru.spbu.terekhow.hashtable;
 import ru.spbu.terekhow.exceptions.ListException;
 import ru.spbu.terekhow.exceptions.OutOfTheRange;
 import ru.spbu.terekhow.exceptions.UnnecessaryAction;
+import ru.spbu.terekhow.list.List;
 import ru.spbu.terekhow.list.UniqueList;
 
 import java.util.ArrayList;
@@ -38,6 +39,9 @@ public class HashTable<KeyType, ValueType> {
     private int size;
     public Hash<KeyType> hash = new DefaultHash<KeyType>();
 
+    private int countOfItems = 0;
+    private int countOfCollision = 0;
+
     public HashTable(int size) {
         this.size = size;
         table = new UniqueList[size];
@@ -60,6 +64,7 @@ public class HashTable<KeyType, ValueType> {
         }
 
         hash = newHash;
+        countOfItems = 0;
         for (int i = 0; i < size; i++) {
             table[i] = new UniqueList<Pair>();
         }
@@ -79,14 +84,20 @@ public class HashTable<KeyType, ValueType> {
 
         try {
             table[hash].pushBack(newPair);
-        } catch (UnnecessaryAction unnecessaryAction) {
+            if (table[hash].getSize() == 2) {
+                countOfCollision++;
+            }
+            countOfItems++;
+        } catch (UnnecessaryAction e) {
             int index = table[hash].getIndexOfElement(newPair);
             try {
                 table[hash].delete(index);
                 table[hash].pushBack(newPair);
             } catch (ListException listException) {
-                System.out.println("Can`t insert " + newPair + ", troubles in HashTable.");
+                listException.printStackTrace();
             }
+        } catch (ListException listException) {
+            listException.printStackTrace();
         }
     }
 
@@ -99,8 +110,8 @@ public class HashTable<KeyType, ValueType> {
         }
         try {
             return table[hash].getElementFromIndex(index).value;
-        } catch (OutOfTheRange e) {
-            System.out.println("Can`t get " + key + ", troubles in HashTable.");
+        } catch (OutOfTheRange outOfTheRange) {
+            outOfTheRange.printStackTrace();
             return null;
         }
     }
@@ -110,17 +121,56 @@ public class HashTable<KeyType, ValueType> {
         int index = table[hash].getIndexOfElement(new Pair(key, null));
         try {
             table[hash].delete(index);
+            if (table[hash].getSize() == 1) {
+                countOfCollision--;
+            }
+            countOfItems--;
         } catch (OutOfTheRange outOfTheRange) {
 
         }
     }
 
-    //В пизду такой код
-    public void showInConsole() {
+    public int getCountOfCollision() {
+        return countOfCollision;
+    }
+
+    public double getLoadFactor() {
+        return (double) countOfItems / (double) size;
+    }
+
+    public int getCountOfItems() {
+        return countOfItems;
+    }
+
+    public int getMaxSizeOfList() {
+        int maxSize = 0;
         for (int i = 0; i < size; i++) {
-            System.out.print(i + ": ");
-            table[i].showInConsole();
+            if (maxSize < table[i].getSize()) maxSize = table[i].getSize();
         }
-        System.out.println();
+        return maxSize;
+    }
+
+    public double getAverageSizeOfList() {
+        double averageSize = 0;
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            if (table[i].getSize() != 0) {
+                count++;
+                averageSize += table[i].getSize();
+            }
+        }
+        return averageSize/count;
+    }
+
+    //В пизду такой код
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = 0; i < size; i++) {
+            s += i + ": ";
+            s += table[i];
+            s += '\n';
+        }
+        return s;
     }
 }
