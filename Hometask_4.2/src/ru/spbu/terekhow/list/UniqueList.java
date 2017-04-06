@@ -1,4 +1,4 @@
-package ru.spbu.terekhow;
+package ru.spbu.terekhow.list;
 
 import ru.spbu.terekhow.exceptions.*;
 
@@ -14,7 +14,7 @@ public class UniqueList<T> extends SingleLinkedList<T> implements List<T> {
      */
     @Override
     public void insert(int index, T value) throws OutOfTheRange, UnnecessaryAction {
-        if (index > size)
+        if (index > size || index < 0)
             throw new OutOfTheRange("Index is more than size");
         if (getIndexOfElement(value) != -1)
             throw new UnnecessaryAction("The element is already exist");

@@ -1,10 +1,10 @@
-package ru.spbu.terekhow;
+package ru.spbu.terekhow.list;
 
 import ru.spbu.terekhow.exceptions.ListException;
 
 /**
  * Interface for any lists. It can be <b>used to implement</b>
- * classes like <b>linked list, double-linked list</b> and <b>{@link ru.spbu.terekhow.UniqueList}</b>.
+ * classes like <b>linked list, double-linked list</b> and <b>{@link UniqueList}</b>.
  *
  * @param <T>
  * It is a type of items that make up the list.

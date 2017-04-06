@@ -1,4 +1,4 @@
-package ru.spbu.terekhow;
+package ru.spbu.terekhow.list;
 
 import ru.spbu.terekhow.exceptions.*;
 
@@ -33,7 +33,7 @@ public class SingleLinkedList<T> implements List<T> {
     /**
      * Insert the <b>value</b> in the end of the list.
      *
-     * @throws ListException The same as {@link ru.spbu.terekhow.SingleLinkedList#insert(int, Object)},
+     * @throws ListException The same as {@link SingleLinkedList#insert(int, Object)},
      * but the exception {@link ru.spbu.terekhow.exceptions.OutOfTheRange} haven`t to happen.
      */
     @Override
@@ -44,7 +44,7 @@ public class SingleLinkedList<T> implements List<T> {
     /**
      * Insert the <b>value</b> in the beginning of the list.
      *
-     * @throws ListException The same as {@link ru.spbu.terekhow.SingleLinkedList#insert(int, Object)},
+     * @throws ListException The same as {@link SingleLinkedList#insert(int, Object)},
      * but the exception {@link ru.spbu.terekhow.exceptions.OutOfTheRange} haven`t to happen.
      */
     @Override
@@ -91,7 +91,7 @@ public class SingleLinkedList<T> implements List<T> {
      */
     @Override
     public T getElementFromIndex(int index) throws OutOfTheRange {
-        if (index >= size)
+        if (index >= size || index < 0)
             throw new OutOfTheRange("Try to get out index");
         Item current = head.next;
         for (int i = 0; i < index; i++) {
