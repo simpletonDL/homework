@@ -2,6 +2,11 @@ package ru.spbu.terekhow;
 
 import ru.spbu.terekhow.exceptions.*;
 
+/**
+ * This class implements List by one-side pointers.
+ * @param <T>
+ *     The Type of elements.
+ */
 public class SingleLinkedList<T> implements List<T> {
     protected class Item {
         public T value;

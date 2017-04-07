@@ -1,11 +1,8 @@
 package ru.spbu.terekhow.tests;
 
 import org.junit.Test;
-import ru.spbu.terekhow.UniqueList;
-import ru.spbu.terekhow.List;
-import ru.spbu.terekhow.exceptions.ListException;
-import ru.spbu.terekhow.exceptions.UnnecessaryAction;
-
+import ru.spbu.terekhow.*;
+import ru.spbu.terekhow.exceptions.*;
 import static org.junit.Assert.*;
 
 public class UniqueListTest {

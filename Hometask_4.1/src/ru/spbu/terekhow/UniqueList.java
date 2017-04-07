@@ -2,6 +2,12 @@ package ru.spbu.terekhow;
 
 import ru.spbu.terekhow.exceptions.*;
 
+/**
+ * This class override {@link ru.spbu.terekhow.SingleLinkedList} to
+ * contain only none-repeating elements.
+ * @param <T>
+ *     Type of the elements.
+ */
 public class UniqueList<T> extends SingleLinkedList<T> implements List<T> {
 
     /**
@@ -13,18 +19,12 @@ public class UniqueList<T> extends SingleLinkedList<T> implements List<T> {
      * It is thrown if user try to insert already existed element.
      */
     @Override
-    public void insert(int index, T value) throws OutOfTheRange, UnnecessaryAction {
+    public void insert(int index, T value) throws ListException {
         if (index > size)
             throw new OutOfTheRange("Index is more than size");
         if (getIndexOfElement(value) != -1)
             throw new UnnecessaryAction("The element is already exist");
 
-        Item ptr1 = head;
-        for (int i = 0; i < index; i++) {
-            ptr1 = ptr1.next;
-        }
-        Item ptr2 = ptr1.next;
-        ptr1.next = new Item(value, ptr2);
-        size++;
+        super.insert(index, value);
     }
 }
