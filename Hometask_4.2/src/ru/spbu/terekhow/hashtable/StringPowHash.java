@@ -1,7 +1,11 @@
 package ru.spbu.terekhow.hashtable;
 
+/**
+ * This hash for string. Summed up char`s keycode multiplied by pow of 31.
+ * This hash is so fast.
+ */
 public class StringPowHash implements Hash<String> {
-    final int MAXINT = 2147483647;
+    private final int MAXINT = 2147483647;
 
     @Override
     public int getHash(String str) {

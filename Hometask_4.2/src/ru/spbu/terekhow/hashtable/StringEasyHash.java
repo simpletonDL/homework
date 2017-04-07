@@ -1,7 +1,11 @@
 package ru.spbu.terekhow.hashtable;
 
+/**
+ * This is hash for strings. Summed up keycodes of chars.
+ * I don`t advise to use it, when you need to hash so many string.
+ */
 public class StringEasyHash implements Hash<String> {
-    final int MAXINT = 2147483647;
+    private final int MAXINT = 2147483647;
 
     @Override
     public int getHash(String str) {
