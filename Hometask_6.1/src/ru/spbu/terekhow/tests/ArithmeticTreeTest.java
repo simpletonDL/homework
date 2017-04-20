@@ -1,6 +1,8 @@
-package ru.spbu.terekhow.tree;
+package ru.spbu.terekhow.tests;
 
 import org.junit.Test;
+import ru.spbu.terekhow.tree.ArithmeticTree;
+import ru.spbu.terekhow.tree.NotCorrectArithmeticExpressionException;
 
 import static org.junit.Assert.*;
 
