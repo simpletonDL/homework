@@ -14,17 +14,29 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import ru.spbu.terehow.application.*;
 
+/**
+ * It is testing class.
+ */
 public class TestCalculator extends Application {
     private Spinner<Integer> firstOperand;
     private Spinner<Integer> secondOperand;
     private ComboBox operations;
     private TextField result;
 
+    /**
+     * Test launch application, change options of nodes
+     * and check answer. It will be fail, if assertion error
+     * happens in testCalculate.
+     */
     @Test
     public void launchAndTestApplication() {
         launch(TestCalculator.class);
     }
 
+    /**
+     * It loads calculator.fxml, gets nodes and calls
+     * fucntion testCalculate to check.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Main.class.getResource("calculator.fxml"));
@@ -41,6 +53,11 @@ public class TestCalculator extends Application {
         primaryStage.close();
     }
 
+    /**
+     * This class change option of spinners and combobox
+     * and check answer. Everything else it checks, that
+     * changing event has happened.
+     */
     public void testCalculate() {
         firstOperand.getValueFactory().setValue(101);
         secondOperand.getValueFactory().setValue(114);

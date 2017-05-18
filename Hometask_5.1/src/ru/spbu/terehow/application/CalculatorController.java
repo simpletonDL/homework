@@ -10,6 +10,9 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Class that controls changing and update answer.
+ */
 public class CalculatorController implements Initializable {
     @FXML
     private TextField output;
@@ -20,6 +23,9 @@ public class CalculatorController implements Initializable {
     @FXML
     private ComboBox operations;
 
+    /**
+     * Set origin options, add listeners.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         firstOperand.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(Integer.MIN_VALUE, Integer.MAX_VALUE));
@@ -43,6 +49,10 @@ public class CalculatorController implements Initializable {
         calculate();
     }
 
+    /**
+     * This function gets current value of spinners and type of operation
+     * and updates answer.
+     */
     private void calculate() {
         String targetOperation = (String) operations.getSelectionModel().getSelectedItem();
         int targetFirstOperand = firstOperand.getValue();
@@ -63,9 +73,5 @@ public class CalculatorController implements Initializable {
                 break;
         }
         output.setText(result);
-    }
-
-    public void solve(ActionEvent actionEvent) {
-        calculate();
     }
 }
