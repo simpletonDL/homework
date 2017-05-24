@@ -28,8 +28,11 @@ public class CalculatorController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        firstOperand.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(Integer.MIN_VALUE, Integer.MAX_VALUE));
-        secondOperand.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(Integer.MIN_VALUE, Integer.MAX_VALUE));
+        firstOperand.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                Integer.MIN_VALUE, Integer.MAX_VALUE));
+        secondOperand.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                Integer.MIN_VALUE, Integer.MAX_VALUE));
+
         operations.getItems().addAll("+", "-", "*", "//");
 
         firstOperand.getValueFactory().setValue(0);
@@ -57,21 +60,7 @@ public class CalculatorController implements Initializable {
         String targetOperation = (String) operations.getSelectionModel().getSelectedItem();
         int targetFirstOperand = firstOperand.getValue();
         int targetSecondOperand = secondOperand.getValue();
-        String result = "";
-        switch (targetOperation) {
-            case "+":
-                result = Integer.toString(targetFirstOperand + targetSecondOperand);
-                break;
-            case "-":
-                result = Integer.toString(targetFirstOperand - targetSecondOperand);
-                break;
-            case "*":
-                result = Integer.toString(targetFirstOperand * targetSecondOperand);
-                break;
-            case "//":
-                result = targetSecondOperand != 0 ? Integer.toString(targetFirstOperand / targetSecondOperand) : "NaN";
-                break;
-        }
+        String result = Calculator.calculate(targetOperation, targetFirstOperand, targetSecondOperand);
         output.setText(result);
     }
 }
