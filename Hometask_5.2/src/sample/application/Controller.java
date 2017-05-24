@@ -134,27 +134,8 @@ public class Controller implements Initializable{
     private void calculate() throws NumberFormatException, DivisionByZeroException {
         int leftIntOperand = Integer.parseInt(leftOperand);
         int rightIntOperand = Integer.parseInt(rightOperand);
-        int result = 0;
 
-        switch (targetOperation) {
-            case "+":
-                result = leftIntOperand + rightIntOperand;
-                break;
-            case "-":
-                result = leftIntOperand - rightIntOperand;
-                break;
-            case "*":
-                result = leftIntOperand * rightIntOperand;
-                break;
-            case "/":
-                if (rightIntOperand == 0) {
-                    throw new DivisionByZeroException();
-                }
-                result = leftIntOperand / rightIntOperand;
-                break;
-        }
-
-        leftOperand = Integer.toString(result);
+        leftOperand = Calculator.calculate(targetOperation, leftIntOperand, rightIntOperand);
         rightOperand = "0";
     }
 
