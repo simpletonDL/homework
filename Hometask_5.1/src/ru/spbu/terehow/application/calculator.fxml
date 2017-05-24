@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.spbu.terehow.application.CalculatorController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="91.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="45.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="117.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+    <children>
+        <Spinner fx:id="firstOperand">
+            <editable>true</editable>
+        </Spinner>
+        <ComboBox fx:id="operations" prefHeight="25.0" prefWidth="62.0" GridPane.columnIndex="1" />
+      <TextField fx:id="output" editable="false" GridPane.columnIndex="3" />
+      <GridPane prefHeight="85.0" prefWidth="111.0" GridPane.columnIndex="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="92.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="63.0" minWidth="10.0" prefWidth="31.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+             <Spinner fx:id="secondOperand">
+                 <editable>true</editable>
+             </Spinner>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0" text="=" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+    </children>
+</GridPane>
