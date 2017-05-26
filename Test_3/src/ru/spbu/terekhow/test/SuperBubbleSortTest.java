@@ -19,25 +19,19 @@ public class SuperBubbleSortTest {
     @Test
     public void sortInteger() {
         final int SIZE = 1000;
-        final int maxInt = 100000;
+        final int MAX_INT = 100000;
         Random rand = new Random();
 
         Integer currentArray[] = new Integer[SIZE];
         ArrayList<Integer> expectedArray = new ArrayList<>();
 
         for (int i = 0; i < SIZE; i++) {
-            int value = rand.nextInt() % maxInt;
+            int value = rand.nextInt() % MAX_INT;
             currentArray[i] = value;
             expectedArray.add(value);
         }
 
-        SuperBubbleSort<Integer> sorter = new SuperBubbleSort<>();
-        sorter.sort(currentArray, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1 - o2;
-            }
-        });
+        SuperBubbleSort.sort(currentArray, (a1, a2) -> (a1 - a2));
         Collections.sort(expectedArray);
 
         ArrayList<Integer> actualArray = new ArrayList<>(Arrays.asList(currentArray));
@@ -50,14 +44,8 @@ public class SuperBubbleSortTest {
     @Test
     public void sortStrings() {
         String actualArray[] = {"yellow", "red", "blue", "green"};
-
-        SuperBubbleSort<String> sorter = new SuperBubbleSort<>();
-        sorter.sort(actualArray, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.length() - o2.length();
-            }
-        });
+        
+        SuperBubbleSort.sort(actualArray, (o1, o2) ->  (o1.length() - o2.length()));
 
         String expectedArray[] = {"red", "blue", "green", "yellow"};
 
