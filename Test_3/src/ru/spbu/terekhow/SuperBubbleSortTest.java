@@ -16,7 +16,7 @@ public class SuperBubbleSortTest {
      * by Collections.sort. Then they compared.
      */
     @Test
-    public void sort() {
+    public void sortInteger() {
         final int SIZE = 1000;
         final int maxInt = 100000;
         Random rand = new Random();
@@ -43,4 +43,26 @@ public class SuperBubbleSortTest {
         assertEquals(expectedArray, actualArray);
     }
 
+    /**
+     * Test string sorting (magic sort by length)
+     */
+    @Test
+    public void sortStrings() {
+        String actualArray[] = {"yellow", "red", "blue", "green"};
+
+        SuperBubbleSort<String> sorter = new SuperBubbleSort<>();
+        sorter.sort(actualArray, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.length() - o2.length();
+            }
+        });
+
+        String expectedArray[] = {"red", "blue", "green", "yellow"};
+
+        ArrayList<String> actualList = new ArrayList<>(Arrays.asList(actualArray));
+        ArrayList<String> expectedList = new ArrayList<>(Arrays.asList(expectedArray));
+
+        assertEquals(expectedList, actualList);
+    }
 }
