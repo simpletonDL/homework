@@ -1,6 +1,7 @@
-package ru.spbu.terekhow;
+package ru.spbu.terekhow.test;
 
 import org.junit.Test;
+import ru.spbu.terekhow.BubbleSort.SuperBubbleSort;
 
 import java.util.*;
 

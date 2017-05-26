@@ -1,4 +1,4 @@
-package ru.spbu.terekhow;
+package ru.spbu.terekhow.BubbleSort;
 
 import java.util.Comparator;
 
